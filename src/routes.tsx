@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard'
 import Produto from './pages/Produto'
 import PageExampleState from './pages/PageExampleState'
 import Usuarios from './pages/Usuarios'
+import Voluntarios from './pages/Voluntarios'
+import GerenciarUsuarios from './pages/Usuarios/Gerenciar'
 
 export const Rotas = () => {
     return( /* Cada rota uma página */
@@ -26,7 +28,16 @@ export const Rotas = () => {
                     path='/usuarios'
                     element={<Usuarios />}
                 />
-                
+                <Route 
+                    path='/usuarios/:id'
+                    element={<GerenciarUsuarios />}
+                />
+
+
+                <Route 
+                    path='/voluntarios'
+                    element={<Voluntarios />}
+                />
                 <Route 
                     path='/produto/:id'
                     element={<Produto />}
@@ -35,7 +46,6 @@ export const Rotas = () => {
                     path='/example'
                     element={<PageExampleState />}
                 />
-
 
             </Routes>
         </BrowserRouter>

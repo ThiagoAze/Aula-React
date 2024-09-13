@@ -7,6 +7,11 @@ interface IProps{
 
 //const = componente
 export const LayoutDashboard = (props: IProps) => { 
+
+    const logout = () => {    //Deslogar do sistema
+        localStorage.removeItem('americanos.token')
+    }
+
     return(
         <>
             <header
@@ -31,7 +36,8 @@ export const LayoutDashboard = (props: IProps) => {
                 <div className="w-100"></div>
                 <div className="navbar-nav">
                     <div className="nav-item text-nowrap">
-                        <Link className="nav-link px-3" to="/">Sair</Link>
+                        {/* Ao clicar em sair será direcionado para login */}
+                        <Link className="nav-link px-3" onClick={logout} to="/">Sair</Link> 
                     </div>
                 </div>
             </header>
@@ -58,6 +64,14 @@ export const LayoutDashboard = (props: IProps) => {
                                         to={'/usuarios'}
                                     >
                                         Usuários
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className={`nav-link`}
+                                        to={'/voluntarios'}
+                                    >
+                                        Voluntários
                                     </Link>
                                 </li>
                             </ul>
