@@ -1,11 +1,18 @@
 {
-    "users": [
-        {
-        "id": 1,
-        "nome": "Admin",
-        "email": "admin@gmail.com",
-        "password": "$2a$10$Y4/4ws04wYotZQg2RB1bwurp7W6RCq.NLrUEEONlOZEdjLXCVG/LW",
-        "permissoes": "admin"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "nome": "Admin",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$Y4/4ws04wYotZQg2RB1bwurp7W6RCq.NLrUEEONlOZEdjLXCVG/LW",
+      "permissoes": "admin"
+    },
+    {
+      "email": "pedro123@gmail.com",
+      "password": "$2a$10$xVey0dmGz7Yd6DO95RomYuUhDyGnGKsfUBxS6SrwZJCkXVUTcL2RC",
+      "nome": "Pedro",
+      "permissoes": "admin",
+      "id": 2
+    }
+  ]
 }
