@@ -13,3 +13,22 @@ export const verificaTokenExpirado = (
         }
     }
 }
+
+//Permissão para usuários de Admin ou Colaborador
+export const validaPermissao = (
+    permissao: Array<string>, 
+    permissaoToken?: string
+) => {
+    if(permissaoToken){
+        //Verificação se é verdadeiramente uma string
+        if(typeof permissaoToken === 'string'){
+            const temAlgumaPermissao = permissao.includes(permissaoToken)   //Se não encontrar nada no array retorna false
+
+            return temAlgumaPermissao
+        }
+        
+        return false
+    }
+    //Se não tiver permissão
+    return false
+}

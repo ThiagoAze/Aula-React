@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { LayoutDashboard } from "../../components/LayoutDashboard";
 import { IToken } from "../../interfaces/token";
-import { verificaTokenExpirado } from "../../services/token";
+import { validaPermissao, verificaTokenExpirado } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -31,6 +31,9 @@ export default function Usuarios() {
 
         if (!token || verificaTokenExpirado(token?.accessToken)) { //se o token não existir ou expirar
             navigate('/')
+        }
+        if(!validaPermissao(['admin'], token?.user.permissoes)){ //Mandar para dashboard se não tiver permissão
+            navigate('/dashboard')
         }
 
         //trazer os usuários do back-end
@@ -69,9 +72,14 @@ export default function Usuarios() {
                                         <th>{usuario.id}</th>
                                         <td>{usuario.nome}</td>
                                         <td>{usuario.email}</td>
-                                        <td>
-                                            <button type="button" className="btn btn-warning" style={{ marginRight: 10 }}>Editar</button>
-                                            <button type="button" className="btn btn-danger">Deletar</button>
+                                        <td>    {/* Passando o id do usuário ao editar */}
+                                            <button 
+                                                type="button" className="btn btn-warning" style={{ marginRight: 10 }}
+                                                onClick={() => {navigate(`/usuarios/${usuario.id}`)}}>Editar
+                                            </button>
+                                            <button 
+                                                type="button" className="btn btn-danger">Deletar
+                                            </button>
                                         </td>
                                     </tr>
                                 )

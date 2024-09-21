@@ -1,5 +1,7 @@
-import { ReactNode } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { Link } from "react-router-dom" 
+import { IToken } from "../../interfaces/token"
+import { validaPermissao } from "../../services/token"
 
 interface IProps{
     children: ReactNode
@@ -8,9 +10,23 @@ interface IProps{
 //const = componente
 export const LayoutDashboard = (props: IProps) => { 
 
-    const logout = () => {    //Deslogar do sistema
+    //Deslogar do sistema
+    const logout = () => {    
         localStorage.removeItem('americanos.token')
     }
+
+    const [token, setToken] = useState<IToken>()
+
+    useEffect(() =>{
+        let lsToken = localStorage.getItem('americanos.token')
+
+        let token: IToken | undefined
+
+        if(typeof lsToken === 'string'){
+            token = JSON.parse(lsToken) //Converter para objeto
+            setToken(token)
+        }
+    })
 
     return(
         <>
@@ -58,14 +74,20 @@ export const LayoutDashboard = (props: IProps) => {
                                         Dashboard
                                     </Link>
                                 </li>
-                                <li className="nav-item">
+                                {
+                                    //Opção Usuarios aparecerá apenas se tiver a permissao
+                                    validaPermissao(['admin'], token?.user.permissoes) && //pode ter várias opções ['exemplo1'], ['exemplo2']
+                                    <li className="nav-item">
                                     <Link
                                         className={`nav-link`}
                                         to={'/usuarios'}
+                                        
                                     >
                                         Usuários
                                     </Link>
                                 </li>
+                                }
+                                
                                 <li className="nav-item">
                                     <Link
                                         className={`nav-link`}

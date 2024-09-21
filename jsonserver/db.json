@@ -13,6 +13,13 @@
       "nome": "Pedro",
       "permissoes": "admin",
       "id": 2
+    },
+    {
+      "email": "joao@gmail.com",
+      "password": "$2a$10$ImJwcAm3CkOReLO7D9zWUesH7Hkv5QRZsgwizSTfyO0GNKrRk02Iu",
+      "nome": "João Silva",
+      "permissoes": "colaborador",
+      "id": 3
     }
   ]
 }
